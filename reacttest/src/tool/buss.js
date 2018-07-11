@@ -1,5 +1,5 @@
 var bus = {
-
+    initstate: {},
     arr: {},
     $on(event, cb) {
         if (!this.arr[event]) {
@@ -9,19 +9,20 @@ var bus = {
         }
 
     },
-    $emit(event, ...data) {
+    $emit(event, attr, data) {
 
         // let events = Array.prototype.slice.call(arguments, 0, 1)
         // let datas = Array.prototype.slice.call(arguments, 1)
         // this.arr[events].forEach((cb) => {
         //     cb(...datas)
         // })
+        this.initstate[attr] = data
 
         if (!this.arr[event]) {
             return
         }
         this.arr[event].forEach((cb) => {
-            cb(...data)
+            cb(data)
         })
     },
     $destroy(event) {

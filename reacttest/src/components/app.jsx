@@ -9,8 +9,13 @@ import Ifelse from './ifelse/index'
 import Destroy from "./destroy/index"
 // import For from "./for/index"
 // import Extents from "./extents/index"
-import Form from "./form/index"
+// import Form from "./form/index"
+// import Msg from "./msg/index"
+import Msg2 from "./msg2/index"
+import Msg3 from "./msg3/index"
+import Msg4 from "./msg4/index"
 
+var global={}
 
 class App extends Component {
     constructor ( props ) {
@@ -30,7 +35,11 @@ class App extends Component {
             {/* <Destroy /> */}
             {/* <For /> */}
             {/* <Extents /> */}
-            <Form />
+            {/* <Form /> */}
+            {/* <Msg /> */}
+            {/* <Msg2 /> */}
+            {/* <Msg3 /> */}
+            <Msg4 />
         </div>;
     };
 };
