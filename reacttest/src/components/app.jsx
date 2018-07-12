@@ -14,6 +14,8 @@ import Destroy from "./destroy/index"
 import Msg2 from "./msg2/index"
 import Msg3 from "./msg3/index"
 import Msg4 from "./msg4/index"
+import Msg5 from "./msg5/index"
+import HocDemo from "./hocdemo/index"
 
 var global={}
 
@@ -39,7 +41,9 @@ class App extends Component {
             {/* <Msg /> */}
             {/* <Msg2 /> */}
             {/* <Msg3 /> */}
-            <Msg4 />
+            {/* <Msg4 /> */}
+            {/* <Msg5 /> */}
+            <HocDemo />
         </div>;
     };
 };
