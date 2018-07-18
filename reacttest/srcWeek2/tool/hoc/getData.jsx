@@ -10,19 +10,8 @@ export default function(Com,arr){
       
         }
 
-        ajax(item,data){
-            let obj={}
-            if(item.data){
-                let key=Object.keys(item.data).forEach((i)=>{
-                    obj[i]=data[0].data[i]
-                })
-           
-                item.data=obj
-            }else{
-                item.data=item.data?item.data:{}
-            }
-           
-            
+        ajax(item){
+            item.data=item.data?item.data:{}
             let dataArr=Object.keys(item.data)
             return new Promise((resolve,reject)=>{
                 var xml=new XMLHttpRequest()
@@ -39,7 +28,7 @@ export default function(Com,arr){
                             }   
                         })
                     }
-                    console.log(str)
+                   
                     xml.open(item.type,str)
                     xml.send()
                 }else{
@@ -70,29 +59,29 @@ export default function(Com,arr){
                 }
             })
         }
-        // componentWillMount(){
-        //     let newAjax=arr.map((i)=>{
-        //         return this.ajax(i)
-        //     })
-        //     Promise.all(newAjax).then((data)=>{
-        //         console.log(data)
-        //         this.setState({
-        //             getData:data
-        //         })
-        //     })
-        // }
-        async componentWillMount(){
-            let arrData=[]
-            for (let i = 0; i < arr.length; i++) {
-                const item = arr[i];
-                arrData.push(await this.ajax(item,arrData))
-            }
-            this.setState({
-                getData:arrData
+        componentWillMount(){
+            let newAjax=arr.map((i)=>{
+                return this.ajax(i)
+            })
+            Promise.all(newAjax).then((data)=>{
+                console.log(data)
+                this.setState({
+                    getData:data
+                })
             })
         }
+        // async componentWillMount(){
+        //     let arrData=[]
+        //     for (let i = 0; i < arr.length; i++) {
+        //         const item = arr[i];
+        //         arrData.push(await this.ajax(item,arrData))
+        //     }
+        //     this.setState({
+        //         getData:arrData
+        //     })
+        // }
         render() {
-            let el=this.state.getData?<Com getData={this.state.getData}/>:null
+            let el=this.state.getData?<Com {...this.props} getData={this.state.getData}/>:<p>加载中</p>
             return el
         }
     }

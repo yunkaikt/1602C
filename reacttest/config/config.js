@@ -3,10 +3,15 @@ var path = require("path")
 module.exports = {
     // webpack基本配置 
     base: {
-        entry: path.join(__dirname, `../src/main.jsx`),
+        // entry: path.join(__dirname, `../src/main.jsx`),
+        // entry: path.join(__dirname, `../srcRouter/main.jsx`),
+        // entry: path.join(__dirname, `../srcWeek2/main.jsx`),
+        entry: path.join(__dirname, `../srcPeopleCar/main.jsx`),
         outputPath: path.join(__dirname, "../dist"),
         outputFileName: "[id]-[name]-[hash].js",
-        templatePath: `./src/index.html`,
+        // templatePath: `./src/index.html`,
+        // templatePath: `./srcRouter/index.html`,
+        templatePath: `./srcPeopleCar/index.html`,
         publicPath: 'http://127.0.0.1:8888/',
         htmlMinify: {
             removeComments: true, //去除注释
@@ -14,7 +19,7 @@ module.exports = {
             removeAttributeQuotes: true, //移除属性的引号
             removeEmptyAttributes: true, //去除空属性
         },
-        cssType: false, //采用哪种css的类型
+        cssType: "less", //采用哪种css的类型
     },
     //   开发环境
     dev: {
@@ -67,6 +72,7 @@ module.exports = {
                 libraryName: "antd-mobile",
                 style: true,
             }]
+
         ]
     },
     //   eslint相关配置

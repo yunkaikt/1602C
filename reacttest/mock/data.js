@@ -11,7 +11,8 @@ var list = Mock.mock({
         'name': "@cname",
         'addr': "@city",
         "content": "@cparagraph",
-        "img": Random.image('200x100', color[Math.floor(Math.random() * 2)])
+        "img": Random.image('200x100', color[Math.floor(Math.random() * 2)]),
+        "time": "@datetime"
     }]
 })
 
