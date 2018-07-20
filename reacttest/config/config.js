@@ -6,12 +6,16 @@ module.exports = {
         // entry: path.join(__dirname, `../src/main.jsx`),
         // entry: path.join(__dirname, `../srcRouter/main.jsx`),
         // entry: path.join(__dirname, `../srcWeek2/main.jsx`),
-        entry: path.join(__dirname, `../srcPeopleCar/main.jsx`),
+        // entry: path.join(__dirname, `../srcPeopleCar/main.jsx`),
+        entry: path.join(__dirname, `../srcRedux/main.jsx`),
+        entry: path.join(__dirname, `../srcSaga/main.jsx`),
+        // entry: path.join(__dirname, `../srcPeopleCarRedux/main.jsx`),
         outputPath: path.join(__dirname, "../dist"),
         outputFileName: "[id]-[name]-[hash].js",
         // templatePath: `./src/index.html`,
         // templatePath: `./srcRouter/index.html`,
-        templatePath: `./srcPeopleCar/index.html`,
+        // templatePath: `./srcPeopleCarRedux/index.html`,
+        templatePath: `./srcSaga/index.html`,
         publicPath: 'http://127.0.0.1:8888/',
         htmlMinify: {
             removeComments: true, //去除注释

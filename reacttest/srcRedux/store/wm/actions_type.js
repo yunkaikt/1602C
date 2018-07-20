@@ -1,0 +1,1 @@
+export const W_ADDNUM_0002 = "w_add_num_0002" //累加num值

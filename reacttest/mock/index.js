@@ -93,4 +93,12 @@ module.exports = function(app) {
         })
     })
 
+    app.get("/api/num", function(req, res, next) {
+        res.send({
+            code: 3001,
+            msg: "ok",
+            data: 1
+        })
+    })
+
 }
