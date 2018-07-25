@@ -1,0 +1,21 @@
+.chooseCard {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.2rem
+}
+
+.chooseCity h3 {
+    padding: 0.2rem 0.4rem;
+}
+
+.chooseCity ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    padding: 0.2rem 0.4rem;
+}
+
+.chooseCity ul li {
+    padding: 0.1rem;
+}

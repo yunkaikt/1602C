@@ -12,6 +12,7 @@ class Index extends Component {
         super(props)
         props.dispatchGetData()
     }
+    
     render() {
         let el=this.props.data?(
             <div className={style.index}>

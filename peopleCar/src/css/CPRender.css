@@ -1,0 +1,12 @@
+.chooseRender li {
+    padding: 0.2rem;
+}
+
+.chooseRender li section {
+    display: flex;
+    flex-wrap: wrap
+}
+
+.chooseRender li section p {
+    margin: 0.1rem
+}

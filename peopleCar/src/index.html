@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <meta http-equiv="X-UA-Compatible" content="ie=edge">
+                <link rel="stylesheet" href="/static/css/reset.css">
+                <script>
+                    function Rem() {
+                            if (document.documentElement.clientWidth >= 750) {
+                            console.log(document.documentElement.clientWidth)
+                                document.documentElement.style.width = 750;
+                
+                                document.documentElement.style.fontSize = rem + 'px';
+                                // document.body.style.fontSize = rem + 'px';
+                            } else if (document.documentElement.clientWidth <= 320) {
+                                document.documentElement.clientWidth = 320;
+                                document.documentElement.style.fontSize = rem + 'px';
+                                // document.body.style.fontSize = rem + 'px';
+                            }else{
+                            var rem = document.documentElement.clientWidth / 750*100;
+                                document.documentElement.style.fontSize = rem + 'px';
+                            }
+                        }
+                        Rem()
+                        window.onresize = function() {
+                            Rem();
+                        };
+                </script>
+                <title>Document</title>
+            </head>
+            <body>
+                <div id="root"></div>
+            </body>
+            </html>
