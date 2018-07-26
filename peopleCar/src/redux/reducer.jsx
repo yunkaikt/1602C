@@ -1,9 +1,11 @@
 import {
-    ADDSELECTCITY
+    ADDSELECTCITY,
+    ADDLISTENADDR
 } from './type';
 
 let initState={
-    selectCity:sessionStorage.getItem("selectCity")?JSON.parse(sessionStorage.getItem("selectCity")):[]
+    selectCity:sessionStorage.getItem("selectCity")?JSON.parse(sessionStorage.getItem("selectCity")):[],
+    listenAddr:sessionStorage.getItem("selectCity")?JSON.parse(sessionStorage.getItem("selectCity"))[0]:null
 };
 
 export default (state=initState,actions)=>{
@@ -36,6 +38,11 @@ export default (state=initState,actions)=>{
         sessionStorage.setItem("selectCity",JSON.stringify(arr))
         return {...state,...{selectCity:arr}};
     };
+
+    case ADDLISTENADDR:{
+        return {...state,...{listenAddr:text}};
+    };
+    
     default:{
         return state;
     };

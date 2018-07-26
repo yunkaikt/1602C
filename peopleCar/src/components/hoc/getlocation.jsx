@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import axios from "axios"
 import {
     ADDSELECTCITY,
+    ADDLISTENADDR,
     actions
 } from "../../redux/index"
 export default (Com)=>{
@@ -34,6 +35,11 @@ export default (Com)=>{
                 sessionStorage.setItem("cityState","1")
                 
                 this.props.dispatch(actions[ADDSELECTCITY](this.findCityData(data.data.content.address)))
+                if(!this.props.listenAddr){
+                    this.props.dispatch(actions[ADDLISTENADDR](this.findCityData(data.data.content.address)))
+                }
+               
+                
 
                 this.setState({
                     Com,

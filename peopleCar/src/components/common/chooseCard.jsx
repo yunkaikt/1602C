@@ -6,10 +6,11 @@ import {
 } from "react-router-dom"
 export default class componentName extends Component {
     render() {
+
         return (
             <ul className={style.chooseCard}>
                 <li>请选择上牌城市</li>
-                <li><Link to="/chooseListen">{this.props.selectCity[0].name}</Link></li>
+                <li><Link to="/chooseListen">{this.props.listenAddr?this.props.listenAddr.name:null}</Link></li>
             </ul>
         )
     }

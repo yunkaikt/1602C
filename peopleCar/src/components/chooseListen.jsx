@@ -6,21 +6,32 @@ import getApi from "./hoc/getApi"
 
 import style from "../css/index.css"
 import NavHeader from "./common/navHeader"
+import {
+  ADDLISTENADDR,
+  actions
+} from "../redux/index"
 
+// 路由对应的第三页面，进行上牌地点的选择
 class ChooseLicencePlate extends Component {
   constructor(props) {
     super(props)
-    console.log(props)
-    let initdata = this.findCity(this.props.selectCity[0])
+    // 根据当前默认的上牌城市，进行默认省份，以及省份所对应的城市数据的筛选
+    let initdata = this.findCityInit(this.props.selectCity[0])
     this.state = {
-      cityList: initdata.arr,
-      letter: initdata.letter
+      cityList: initdata.arr,   //渲染的城市数组
+      letter: initdata.letter   //当前省份对应的首字
     }
-   
-    console.log(initdata)
   }
-
+  // 根据省份id，筛选对应的城市数组
   findCity(item) {
+    let citydata = this.props.getData[0].city
+    let arr =  citydata[item.id]
+     this.setState({
+      cityList:arr
+     })
+  }
+  // 根据当前默认的上牌城市，进行默认省份所对应的城市数据的筛选
+  findCityInit(item) {
     let citydata = this.props.getData[0].city
     let arr = [], currentId
     Object.keys(citydata).forEach((j) => {
@@ -33,6 +44,7 @@ class ChooseLicencePlate extends Component {
     })
     return { arr, letter: this.findLetter(currentId) }
   }
+  // 根据当前默认的上牌城市，进行默认省份所对应的首字母的筛选
   findLetter(id) {
     let provinceArr = this.props.getData[0].provinceArr
     let letter
@@ -43,18 +55,30 @@ class ChooseLicencePlate extends Component {
         }
       })
     })
-
     return letter
   }
-  scrollLetter(letter) {
-    console.log()
-    this.refs["province"].scrollTop=this.refs[letter].offsetTop-90
-  }
-  componentWillMount() {
 
+  // 选择上牌城市，进行redux中数据的改变
+  chooseCity(item){
+    this.props.dispatch(actions[ADDLISTENADDR](item))
+  }
+  // 点击字母，进行省份的自动滑动
+  scrollHandle(item){
+    this.refs["province"].scrollTop=this.refs[item.letter].offsetTop-90
+    this.findProvinceCity(item)
+  }
+  
+  // 根据字母获取省份列表，根据列表中第一个省份，获取相应的城市数据
+  findProvinceCity(item){
+    let provinceId=item.province[0].id
+    let arr=this.props.getData[0].city[provinceId]
+    this.setState({
+      cityList:arr
+    })
   }
   componentDidMount(){
-    this.scrollLetter(this.state.letter)
+    // 根据默认省份所对应的字母进行省份滚动条的滚动
+    this.refs["province"].scrollTop=this.refs[this.state.letter].offsetTop-90
   }
 
   render() {
@@ -77,9 +101,9 @@ class ChooseLicencePlate extends Component {
 
 
     // // 渲染字母
-    // let $letter=this.props.provinceList.provinceArr.map((i,index)=>{
-    //     return <li key={index} onClick={(e)=>{this.scrollHandle(i,index)}}>{i.letter}</li>
-    // })
+    let $letter=this.props.getData[0].provinceArr.map((i,index)=>{
+        return <li key={index} onClick={(e)=>{this.scrollHandle(i,index)}}>{i.letter}</li>
+    })
     let rightContent = [
     ]
     let leftContent = (data) => {
@@ -90,7 +114,7 @@ class ChooseLicencePlate extends Component {
         <NavHeader {...this.props} leftContent={leftContent} rightContent={rightContent} />
         <section className={style.cityAddressLicen}>
           <Flex wrap="wrap">
-            <p>{this.props.selectCity[0] ? this.props.selectCity[0].name : null}</p>
+            <p>{this.props.listenAddr ? this.props.listenAddr.name: null}</p>
 
           </Flex>
         </section>
@@ -103,7 +127,7 @@ class ChooseLicencePlate extends Component {
             {$city}
           </ul>
           <ul className={style.licencePlateLetter}>
-            {/* {$letter} */}
+            {$letter}
           </ul>
 
         </main>
